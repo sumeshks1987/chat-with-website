@@ -47,7 +47,7 @@ def main():
 
         # Create Ollama embeddings
         #openai_embeddings = OpenAIEmbeddings()
-        ollama_embeddings = OllamaEmbeddings(model="mistral")
+        ollama_embeddings = OllamaEmbeddings(model="llama2")
 
         # Create a Chroma vector database from the documents
         vectordb = Chroma.from_documents(documents=docs, 
@@ -60,7 +60,7 @@ def main():
         retriever = vectordb.as_retriever(search_kwargs={"k": 3})
 
         # Use a mistral llm from Ollama
-        llm = Ollama(model="mistral")
+        llm = Ollama(model="llama2")
 
         # Create a RetrievalQA from the model and retriever
         qa = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=retriever)
